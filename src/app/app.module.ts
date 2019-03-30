@@ -6,6 +6,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
+import { DataTableModule } from 'angular7-data-table';
 
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
@@ -23,6 +26,10 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { UserService } from './user.service';
 import { AdminAuthGuard } from './admin-auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { CategoryService } from './category.service';
+import { ProductService } from './product.service';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
 	declarations: [
@@ -36,17 +43,22 @@ import { AdminAuthGuard } from './admin-auth-guard.service';
 		MyOrdersComponent,
 		AdminProductsComponent,
 		AdminOrdersComponent,
-		LoginComponent
+		LoginComponent,
+		ProductFormComponent
 	],
 	imports: [
 		BrowserModule,
+		FormsModule,
+		CustomFormsModule,
+		DataTableModule.forRoot(),
 		AppRoutingModule,
 		AngularFireModule.initializeApp(environment.firebase),
 		AngularFireDatabaseModule,
 		AngularFireAuthModule,
-		NgbModule.forRoot()
+		NgbModule.forRoot(),
+		NoopAnimationsModule
 	],
-	providers: [ AuthService, AuthGuard, UserService, AdminAuthGuard ],
+	providers: [ AuthService, AuthGuard, UserService, AdminAuthGuard, CategoryService, ProductService ],
 	bootstrap: [ AppComponent ]
 })
 export class AppModule {}
