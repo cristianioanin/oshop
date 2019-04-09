@@ -3,33 +3,46 @@
   <p>
     You have {{ cart.totalItemsCount }} items in your shopping cart.
   </p>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Quantity</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of cart.items">
-        <td>
-          {{ item.product.title }}
-        </td>
-        <td>
-          {{ item.quantity }}
-        </td>
-        <td>
-          {{ item.totalPrice | currency:'USD':'symbol' }}
-        </td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <th></th>
-        <th></th>
-        <th>{{ cart.totalPrice | currency:'USD':'symbol' }}</th>
-      </tr>
-    </tfoot>
-  </table>
+  <div class="container">
+    <button
+      (click)="clearCart()"
+      class="btn btn-danger btn-sm float-right mb-5">
+      Clear Shopping Cart
+    </button>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Product</th>
+          <th class="cart__quantity">Quantity</th>
+          <th class="cart__price">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart.items">
+          <td>
+            <img [src]="item.imageUrl" alt="A picture of {{ item.title }}" class="thumbnail">
+          </td>
+          <td>
+            {{ item.title }}
+          </td>
+          <td>
+            <product-quantity [product]="item" [shopping-cart]="cart">
+            </product-quantity>
+          </td>
+          <td class="text-right">
+            {{ item.totalPrice | currency:'USD':'symbol' }}
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th></th>
+          <th></th>
+          <th class="text-right">{{ cart.totalPrice | currency:'USD':'symbol' }}</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 </ng-container>

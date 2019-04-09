@@ -1,0 +1,21 @@
+.cart__quantity {
+	width: 14rem;
+	text-align: center;
+}
+
+.cart__price {
+	width: 12rem;
+	text-align: right;
+}
+
+.container table {
+	margin-top: 3rem;
+}
+
+.thumbnail {
+	width: 5rem;
+	height: 5rem;
+	border-radius: 50%;
+	object-position: center;
+	object-fit: cover;
+}
